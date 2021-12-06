@@ -2,9 +2,7 @@ import React from "react";
 
 const Box = ({ backgroundColor, width, height }) => {
     return (
-        <div>
-            
-        </div>
+        <div backgroundColor={backgroundColor} width={width} height={height}></div>
     )
 }
 
