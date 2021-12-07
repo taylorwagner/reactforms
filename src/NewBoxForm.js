@@ -1,32 +1,30 @@
 import React, { useState } from "react";
 import uuid from "uuid/v4";
 
-const NewBoxForm = () => {
-    const initialState = {
-        backgroundColor: "",
+const NewBoxForm = ({ createBox }) => {
+    const [formData, setFormData] = useState({
+        height: "",
         width: "",
-        height: ""
-    };
-
-    const [formData, setFormData] = useState(initialState);
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(data => ({
-            ...data,
-            [name]: value
+        backgroundColor: ""
+      });
+    
+      const handleChange = evt => {
+        const { name, value } = evt.target;
+        setFormData(formData => ({
+          ...formData,
+          [name]: value
         }));
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
+      };
+    
+      const gatherInput = evt => {
+        evt.preventDefault();
         createBox({ ...formData, id: uuid() });
-        setFormData(initialState);
-    };
+        setFormData({ height: "", width: "", backgroundColor: "" });
+      };
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={gatherInput}>
                 <div>
                     <label htmlFor="backgroundColor">Background Color of Box</label>
                     <input
